@@ -36,7 +36,7 @@ namespace MaisUI
 
         string connectionString = "server=127.0.0.1;port=3306;username=root;password=;database=mais;";
 
-        public void login()
+        public void login(Form1 form1)
         {
             string query = "SELECT * FROM users WHERE username=@username AND password=@password";
 
@@ -59,11 +59,12 @@ namespace MaisUI
                                 MessageBox.Show("Login successful, opening POS");
                                 Form2 frm2 = new Form2();
                                 frm2.Show();
+                                form1.Hide();
                             }
                         }
                         else
                         {
-                            MessageBox.Show("Oops! Something went wrong. Please try again later.");
+                            MessageBox.Show("You are not authorize to access this system.");
                         }
                     }
                 }
@@ -76,7 +77,8 @@ namespace MaisUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            login();
+            login(this);
+
         }
     }
 }
