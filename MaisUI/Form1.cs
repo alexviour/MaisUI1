@@ -56,7 +56,7 @@ namespace MaisUI
                         {
                             while (reader.Read())
                             {
-                                MessageBox.Show("Login successful, opening POS");
+                                MessageBox.Show("Login successfully. \n Opening POS.");
                                 Form2 frm2 = new Form2();
                                 frm2.Show();
                                 form1.Hide();
@@ -83,7 +83,17 @@ namespace MaisUI
 
         private void button8_Click(object sender, EventArgs e)
         {
+            Application.Exit();
+        }
 
+        private void button9_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
         }
     }
 }
