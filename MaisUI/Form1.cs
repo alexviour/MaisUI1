@@ -35,17 +35,18 @@ namespace MaisUI
             }
         }
 
-        string connectionString = "server=127.0.0.1;port=3306;username=root;password=;database=mais;";
+        private string connectionString = "server=127.0.0.1;port=3306;username=root;password=;database=mais;";
 
-        public void login(Form1 form1)
+        public void Login(Form1 form1)
         {
-            string query = "SELECT * FROM users WHERE username=@username AND password=@password";
+            string query = "SELECT * FROM Users WHERE username=@username AND password=@password";
 
             using (MySqlConnection databaseConnection = new MySqlConnection(connectionString))
             {
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
                 commandDatabase.Parameters.AddWithValue("@username", textBox3.Text);
                 commandDatabase.Parameters.AddWithValue("@password", textBox2.Text);
+
                 commandDatabase.CommandTimeout = 60;
 
                 try
@@ -65,7 +66,7 @@ namespace MaisUI
                         }
                         else
                         {
-                            MessageBox.Show("You are not authorize to access this system.");
+                            MessageBox.Show("You are not authorized to access this system.");
                         }
                     }
                 }
@@ -78,8 +79,7 @@ namespace MaisUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            login(this);
-
+            Login(this);
         }
 
         private void button8_Click(object sender, EventArgs e)

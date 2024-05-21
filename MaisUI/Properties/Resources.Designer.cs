@@ -63,6 +63,16 @@ namespace MaisUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap horizontal_box {
+            get {
+                object obj = ResourceManager.GetObject("horizontal box", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Managing_kineme {
             get {
                 object obj = ResourceManager.GetObject("Managing kineme", resourceCulture);
@@ -76,6 +86,16 @@ namespace MaisUI.Properties {
         internal static System.Drawing.Bitmap Managing_kineme__1_ {
             get {
                 object obj = ResourceManager.GetObject("Managing kineme (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Managing_kineme__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("Managing kineme (1)1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
