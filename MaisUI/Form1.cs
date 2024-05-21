@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using static MaisUI.ClassMethods;
 
 namespace MaisUI
 {
@@ -83,12 +84,12 @@ namespace MaisUI
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            ExitApp();
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            ToggleMinimize(this);
         }
 
         private void button6_Click(object sender, EventArgs e)

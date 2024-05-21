@@ -39,9 +39,17 @@
             this.button9 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.ProductName1 = new System.Windows.Forms.Label();
+            this.ProductQuantity1 = new System.Windows.Forms.Label();
+            this.TransactionDate1 = new System.Windows.Forms.Label();
+            this.ProductTotalPrice1 = new System.Windows.Forms.Label();
+            this.TransactionStatus1 = new System.Windows.Forms.Label();
+            this.UserName1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -141,6 +149,7 @@
             this.button9.Size = new System.Drawing.Size(54, 48);
             this.button9.TabIndex = 21;
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -170,6 +179,78 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(201)))), ((int)(((byte)(102)))));
+            this.panel1.Controls.Add(this.UserName1);
+            this.panel1.Controls.Add(this.TransactionStatus1);
+            this.panel1.Controls.Add(this.TransactionDate1);
+            this.panel1.Controls.Add(this.ProductTotalPrice1);
+            this.panel1.Controls.Add(this.ProductQuantity1);
+            this.panel1.Controls.Add(this.ProductName1);
+            this.panel1.Location = new System.Drawing.Point(408, 236);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(951, 124);
+            this.panel1.TabIndex = 24;
+            // 
+            // ProductName1
+            // 
+            this.ProductName1.AutoSize = true;
+            this.ProductName1.Location = new System.Drawing.Point(167, 52);
+            this.ProductName1.Name = "ProductName1";
+            this.ProductName1.Size = new System.Drawing.Size(44, 16);
+            this.ProductName1.TabIndex = 0;
+            this.ProductName1.Text = "label1";
+            this.ProductName1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // ProductQuantity1
+            // 
+            this.ProductQuantity1.AutoSize = true;
+            this.ProductQuantity1.Location = new System.Drawing.Point(167, 88);
+            this.ProductQuantity1.Name = "ProductQuantity1";
+            this.ProductQuantity1.Size = new System.Drawing.Size(44, 16);
+            this.ProductQuantity1.TabIndex = 1;
+            this.ProductQuantity1.Text = "label3";
+            this.ProductQuantity1.Click += new System.EventHandler(this.ProductQuantity_Click);
+            // 
+            // TransactionDate1
+            // 
+            this.TransactionDate1.AutoSize = true;
+            this.TransactionDate1.Location = new System.Drawing.Point(426, 88);
+            this.TransactionDate1.Name = "TransactionDate1";
+            this.TransactionDate1.Size = new System.Drawing.Size(44, 16);
+            this.TransactionDate1.TabIndex = 3;
+            this.TransactionDate1.Text = "label4";
+            // 
+            // ProductTotalPrice1
+            // 
+            this.ProductTotalPrice1.AutoSize = true;
+            this.ProductTotalPrice1.Location = new System.Drawing.Point(426, 52);
+            this.ProductTotalPrice1.Name = "ProductTotalPrice1";
+            this.ProductTotalPrice1.Size = new System.Drawing.Size(44, 16);
+            this.ProductTotalPrice1.TabIndex = 2;
+            this.ProductTotalPrice1.Text = "label5";
+            // 
+            // TransactionStatus1
+            // 
+            this.TransactionStatus1.AutoSize = true;
+            this.TransactionStatus1.Location = new System.Drawing.Point(673, 52);
+            this.TransactionStatus1.Name = "TransactionStatus1";
+            this.TransactionStatus1.Size = new System.Drawing.Size(44, 16);
+            this.TransactionStatus1.TabIndex = 4;
+            this.TransactionStatus1.Text = "label7";
+            this.TransactionStatus1.Click += new System.EventHandler(this.label7_Click);
+            // 
+            // UserName1
+            // 
+            this.UserName1.AutoSize = true;
+            this.UserName1.Location = new System.Drawing.Point(17, 12);
+            this.UserName1.Name = "UserName1";
+            this.UserName1.Size = new System.Drawing.Size(44, 16);
+            this.UserName1.TabIndex = 6;
+            this.UserName1.Text = "label8";
+            this.UserName1.Click += new System.EventHandler(this.UserName_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -177,6 +258,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1431, 707);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button8);
             this.Controls.Add(this.button9);
@@ -197,6 +279,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -214,5 +298,12 @@
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button8;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label TransactionStatus1;
+        private System.Windows.Forms.Label TransactionDate1;
+        private System.Windows.Forms.Label ProductTotalPrice1;
+        private System.Windows.Forms.Label ProductQuantity1;
+        private System.Windows.Forms.Label ProductName1;
+        private System.Windows.Forms.Label UserName1;
     }
 }

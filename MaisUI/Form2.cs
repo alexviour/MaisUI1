@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MaisUI.ClassMethods;
 
 namespace MaisUI
 {
@@ -34,12 +35,37 @@ namespace MaisUI
 
         private void button3_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Minimized;
+            ToggleMinimize(this);
         }
 
         private void button8_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            ExitApp();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            LogOutFunction();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ProductQuantity_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
