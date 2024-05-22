@@ -195,7 +195,7 @@
     <None Include="Resources\Screenshot 2024-05-17 145449.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\horizontal box.png" />
+    <None Include="Resources\panelTransaction.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Managing kineme %281%291.png" />

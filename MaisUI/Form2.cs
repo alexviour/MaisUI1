@@ -25,39 +25,39 @@ namespace MaisUI
             LoadRecentTransactions(currentPage);
         }
 
-        private string connectionString = "server=127.0.0.1;port=3306;username=root;password=;database=mais;";
+        public string connectionString = "server=127.0.0.1;port=3306;username=root;password=;database=mais;";
 
         private void LoadRecentTransactions(int page)
         {
             string query = @"SELECT
-                        o.order_id,
-                        u.username,
-                        p.name AS product_name,
-                        c.color_name,
-                        l.logo_name,
-                        oi.quantity,
-                        oi.price * oi.quantity AS total_cost,
-                        os.status_name,
-                        o.order_date
-                     FROM
-                        Orders o
-                     JOIN
-                        OrderItems oi ON o.order_id = oi.order_id
-                     JOIN
-                        ProductVariants pv ON oi.variant_id = pv.variant_id
-                     JOIN
-                        Products p ON pv.product_id = p.product_id
-                     JOIN
-                        Colors c ON pv.color_id = c.color_id
-                     JOIN
-                        Logos l ON pv.logo_id = l.logo_id
-                     JOIN
-                        Users u ON o.customer_id = u.user_id
-                     JOIN
-                        OrderStatus os ON o.status_id = os.status_id
-                     ORDER BY
-                        o.order_date DESC
-                     LIMIT @limit OFFSET @offset";
+                            o.order_id,
+                            u.username,
+                            p.name AS product_name,
+                            c.color_name,
+                            l.logo_name,
+                            oi.quantity,
+                            oi.price * oi.quantity AS total_cost,
+                            os.status_name,
+                            o.order_date
+                         FROM
+                            Orders o
+                         JOIN
+                            OrderItems oi ON o.order_id = oi.order_id
+                         JOIN
+                            ProductVariants pv ON oi.variant_id = pv.variant_id
+                         JOIN
+                            Products p ON pv.product_id = p.product_id
+                         JOIN
+                            Colors c ON pv.color_id = c.color_id
+                         JOIN
+                            Logos l ON pv.logo_id = l.logo_id
+                         JOIN
+                            Users u ON o.customer_id = u.user_id
+                         JOIN
+                            OrderStatus os ON o.status_id = os.status_id
+                         ORDER BY
+                            o.order_date DESC
+                         LIMIT @limit OFFSET @offset";
 
             using (MySqlCommand cmd = new MySqlCommand(query, connection))
             {
@@ -79,7 +79,8 @@ namespace MaisUI
                                 Size = new Size(500, 100),
                                 BorderStyle = BorderStyle.FixedSingle,
                                 BackgroundImage = Properties.Resources.horizontal_box,
-                                BackgroundImageLayout = ImageLayout.Stretch
+                                BackgroundImageLayout = ImageLayout.Stretch,
+                                Location = new Point(0, yOffset) // Positioning the panel
                             };
 
                             Label lblUsername = new Label
@@ -137,11 +138,8 @@ namespace MaisUI
                             panel.Controls.Add(lblStatus);
                             panel.Controls.Add(lblOrderDate);
 
-                            // You can position the panel here if needed or set yOffset to 0 if you want to position it manually elsewhere
-                            panel.Location = new Point(0, yOffset); // Example positioning, you can modify this line
-
                             panelTransactions.Controls.Add(panel);
-                            yOffset += 110; // Adjust yOffset for the next panel if positioning sequentially
+                            yOffset += 110; // Adjust yOffset for the next panel
                         }
                     }
                 }
