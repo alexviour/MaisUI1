@@ -11,21 +11,35 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using MySql.Data.MySqlClient;
+using static MaisUI.Form1;
 
 namespace MaisUI
 {
     public partial class Form5 : Form
     {
+        private Manager _loggedInManager;
         private string connectionString = "Server=localhost;Database=mais;Uid=root;Pwd=";
+        /*private static Form5 instance;
 
-        public Form5(Form1.getManager loggedInUser)
+        public static Form5 GetInstance()
+        {
+            if (instance == null || instance.IsDisposed)
+            {
+                instance = new Form5();
+            }
+            return instance;
+        }*/
+
+        public Form5(Manager manager)
         {
             InitializeComponent();
             ColorHoverEffect(DashBoardbtn); ColorHoverEffect(Ordersbtn); ColorHoverEffect(Productsbtn); ColorHoverEffect(Settingsbtn);
             LoadChartData();
             LoadMostBoughtProductImage();
+            _loggedInManager = manager;
             LoadUserName();
         }
+
         private void LoadChartData()
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -60,66 +74,13 @@ namespace MaisUI
 
         private void LoadUserName()
         {
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            if (_loggedInManager != null)
             {
-                string query = "SELECT FirstName, LastName, Email FROM managers";
-
-                using (MySqlCommand command = new MySqlCommand(query, connection))
-                {
-                    connection.Open();
-
-                    using (MySqlDataReader reader = command.ExecuteReader())
-                    {
-                        if (reader.HasRows)
-                        {
-                            while (reader.Read())
-                            {
-                                string first = reader["FirstName"].ToString();
-                                string last = reader["LastName"].ToString();
-                                string displayText = $"{first} ({last})";
-                                string email = reader["Email"].ToString();
-
-                                UserName.Text = displayText;
-                                Email.Text = email;
-                            }
-                        }
-                    }
-                }
+                UserName.Text = $"{_loggedInManager.FirstName} {_loggedInManager.LastName}";
+                Email.Text = _loggedInManager.Email;
             }
         }
 
-
-
-        /*private void LoadUserName()
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "SELECT FirstName, LastName, Email FROM customers";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    if (reader.HasRows)
-                    {
-                        while (reader.Read())
-                        {
-                            string first = reader["FirstName"].ToString();
-                            string last = reader["LastName"].ToString();
-                            string displayText = $"{first} ({last})";
-                            string email = reader["Email"].ToString();
-
-                            UserName.Text = displayText;
-                            Email.Text = email;
-                        }
-                    }
-
-                    reader.Close();
-                }
-            }
-        }*/
         private void LoadMostBoughtProductImage()
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -159,10 +120,9 @@ namespace MaisUI
                 }
             }
         }
-        
-        private void ColorHoverEffect (Control control)
-        {
 
+        private void ColorHoverEffect(Control control)
+        {
             control.MouseEnter += (sender, e) =>
             {
                 control.BackColor = ColorTranslator.FromHtml("#E1C053");
@@ -179,9 +139,11 @@ namespace MaisUI
             };
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void Productsbtn_Click(object sender, EventArgs e)
         {
-
+            Form6 form6 = new Form6();
+            form6.Show();
+            this.Hide();
         }
     }
 }

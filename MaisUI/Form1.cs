@@ -34,7 +34,8 @@ namespace MaisUI
                 mySqlConnection.Close();
             }
         }
-        public class getManager
+
+        public class Manager
         {
             public int ManagerId { get; set; }
             public string Email { get; set; }
@@ -42,7 +43,7 @@ namespace MaisUI
             public string LastName { get; set; }
         }
 
-        string connectionString = "server=127.0.0.1;port=3306;username=root;password=;database=mais;";
+        private string connectionString = "Server=localhost;Database=mais;Uid=root;Pwd=";
 
         public void Login(Form1 form1)
         {
@@ -62,21 +63,18 @@ namespace MaisUI
                     {
                         if (reader.HasRows)
                         {
-                            while (reader.Read())
+                            reader.Read();
+                            Manager loggedInUser = new Manager
                             {
-                                getManager loggedInUser = new getManager
-                                {
-                                    ManagerId = Convert.ToInt32(reader["UserID"]),
-                                    Email = reader["Email"].ToString(),
-                                    FirstName = reader["FirstName"].ToString(),
-                                    LastName = reader["LastName"].ToString(),
-                                };
+                                Email = reader["Email"].ToString(),
+                                FirstName = reader["FirstName"].ToString(),
+                                LastName = reader["LastName"].ToString()
+                            };
 
-                                MessageBox.Show("Login successfully. \nOpening POS.");
-                                Form5 frm5 = new Form5(loggedInUser);
-                                frm5.Show();
-                                form1.Hide();
-                            }
+                            MessageBox.Show("Login successful. \nOpening POS.");
+                            Form5 form5 = new Form5(loggedInUser);
+                            form5.Show();
+                            form1.Hide();
                         }
                         else
                         {
@@ -86,7 +84,7 @@ namespace MaisUI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show($"An error occurred: {ex.Message}");
                 }
             }
         }
@@ -94,7 +92,6 @@ namespace MaisUI
         private void button1_Click(object sender, EventArgs e)
         {
             Login(this);
-
         }
 
         private void button8_Click(object sender, EventArgs e)
@@ -110,6 +107,10 @@ namespace MaisUI
         private void button6_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
         }
     }
 }
