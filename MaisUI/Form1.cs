@@ -34,18 +34,25 @@ namespace MaisUI
                 mySqlConnection.Close();
             }
         }
+        public class getManager
+        {
+            public int ManagerId { get; set; }
+            public string Email { get; set; }
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+        }
 
         string connectionString = "server=127.0.0.1;port=3306;username=root;password=;database=mais;";
 
-        public void login(Form1 form1)
+        public void Login(Form1 form1)
         {
-            string query = "SELECT * FROM users WHERE username=@username AND password=@password";
+            string query = "SELECT * FROM managers WHERE email=@Email AND password=@Password";
 
             using (MySqlConnection databaseConnection = new MySqlConnection(connectionString))
             {
                 MySqlCommand commandDatabase = new MySqlCommand(query, databaseConnection);
-                commandDatabase.Parameters.AddWithValue("@username", textBox3.Text);
-                commandDatabase.Parameters.AddWithValue("@password", textBox2.Text);
+                commandDatabase.Parameters.AddWithValue("@Email", textBox3.Text);
+                commandDatabase.Parameters.AddWithValue("@Password", textBox2.Text);
                 commandDatabase.CommandTimeout = 60;
 
                 try
@@ -57,15 +64,23 @@ namespace MaisUI
                         {
                             while (reader.Read())
                             {
-                                MessageBox.Show("Login successfully. \n Opening POS.");
-                                Form2 frm2 = new Form2();
-                                frm2.Show();
+                                getManager loggedInUser = new getManager
+                                {
+                                    ManagerId = Convert.ToInt32(reader["UserID"]),
+                                    Email = reader["Email"].ToString(),
+                                    FirstName = reader["FirstName"].ToString(),
+                                    LastName = reader["LastName"].ToString(),
+                                };
+
+                                MessageBox.Show("Login successfully. \nOpening POS.");
+                                Form5 frm5 = new Form5(loggedInUser);
+                                frm5.Show();
                                 form1.Hide();
                             }
                         }
                         else
                         {
-                            MessageBox.Show("You are not authorize to access this system.");
+                            MessageBox.Show("You are not authorized to access this system.");
                         }
                     }
                 }
@@ -78,7 +93,7 @@ namespace MaisUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            login(this);
+            Login(this);
 
         }
 
