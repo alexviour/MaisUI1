@@ -13,6 +13,7 @@ namespace MaisUI
 {
     public partial class Form2 : Form
     {
+        string connectionString = "server=127.0.0.1;port=3306;username=root;password=;database=mais;";
         public Form2()
         {
             InitializeComponent();
@@ -20,6 +21,7 @@ namespace MaisUI
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -37,9 +39,5 @@ namespace MaisUI
             LogOutFunction();
         }
 
-        private void chart1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
