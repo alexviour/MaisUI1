@@ -17,26 +17,19 @@ namespace MaisUI
 {
     public partial class Form5 : Form
     {
-        private Manager _loggedInManager;
-        private string connectionString = "Server=localhost;Database=mais;Uid=root;Pwd=";
-        /*private static Form5 instance;
-
-        public static Form5 GetInstance()
-        {
-            if (instance == null || instance.IsDisposed)
-            {
-                instance = new Form5();
-            }
-            return instance;
-        }*/
+        private Manager loggedInUser;
+        private string connectionString = "Server=127.0.0.1;Database=mais;Uid=root;Pwd=";
 
         public Form5(Manager manager)
         {
             InitializeComponent();
-            ColorHoverEffect(DashBoardbtn); ColorHoverEffect(Ordersbtn); ColorHoverEffect(Productsbtn); ColorHoverEffect(Settingsbtn);
+            loggedInUser = manager;
+            ColorHoverEffect(DashBoardbtn);
+            ColorHoverEffect(Ordersbtn);
+            ColorHoverEffect(Productsbtn);
+            ColorHoverEffect(Settingsbtn);
             LoadChartData();
             LoadMostBoughtProductImage();
-            _loggedInManager = manager;
             LoadUserName();
         }
 
@@ -74,10 +67,10 @@ namespace MaisUI
 
         private void LoadUserName()
         {
-            if (_loggedInManager != null)
+            if (loggedInUser != null)
             {
-                UserName.Text = $"{_loggedInManager.FirstName} {_loggedInManager.LastName}";
-                Email.Text = _loggedInManager.Email;
+                UserName.Text = $"{loggedInUser.FirstName} {loggedInUser.LastName}";
+                Email.Text = loggedInUser.Email;
             }
         }
 
@@ -141,7 +134,13 @@ namespace MaisUI
 
         private void Productsbtn_Click(object sender, EventArgs e)
         {
-            Form6 form6 = new Form6();
+            
+        }
+
+        private void Ordersbtn_Click(object sender, EventArgs e)
+        {
+            Manager loggedInUser = new Manager();
+            Form6 form6 = new Form6(loggedInUser);
             form6.Show();
             this.Hide();
         }

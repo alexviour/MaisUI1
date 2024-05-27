@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static MaisUI.Form1;
 
 namespace MaisUI
 {
@@ -16,7 +17,8 @@ namespace MaisUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Manager loggedInUser = new Manager();
+            Application.Run(new Form5(loggedInUser));
         }
     }
 }

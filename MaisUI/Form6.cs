@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Xpo.DB.Helpers;
 using MySql.Data.MySqlClient;
 using static MaisUI.Form1;
 
@@ -15,51 +18,55 @@ namespace MaisUI
     public partial class Form6 : Form
     {
         private string connectionString = "Server=localhost;Database=mais;Uid=root;Pwd=";
-        private Manager _loggedInManager;
+        private Manager loggedInUser;
 
         public Form6(Manager manager)
         {
             InitializeComponent();
-            _loggedInManager = manager;
-            LoadData();
+            loggedInUser = manager;
+            //  LoadData();
             LoadUserName();
+            this.Load += new EventHandler(YourForm_Load);
         }
 
-        private void LoadData()
+        private void YourForm_Load(object sender, EventArgs e)
         {
-            string connectionString = "server=localhost;database=mais;uid=root;pwd=;";
-            string query = "SELECT * FROM orderdetails";
+            string connectionString = "Server=localhost;Database=mais;Uid=root;Pwd=";
 
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            string query = @"
+                SELECT * FROM orders";
+
+            DataTable dataTable = new DataTable();
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
                 {
-                    connection.Open();
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, connection);
-                    DataTable dataTable = new DataTable();
-                    adapter.Fill(dataTable);
-                    dataGridView1.DataSource = dataTable;
+                    conn.Open();
+                    MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, conn);
+                    dataAdapter.Fill(dataTable);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("An error occurred: " + ex.Message);
+                    MessageBox.Show($"Error: {ex.Message}");
                 }
             }
+
+            dataGridView1.DataSource = dataTable;
         }
 
         private void LoadUserName()
         {
-            if (_loggedInManager != null)
+            if (loggedInUser != null)
             {
-                UserName.Text = $"{_loggedInManager.FirstName} {_loggedInManager.LastName}";
-                Email.Text = _loggedInManager.Email;
+                UserName.Text = $"{loggedInUser.FirstName} {loggedInUser.LastName}";
+                Email.Text = loggedInUser.Email;
             }
         }
 
         private void DashBoardbtn_Click(object sender, EventArgs e)
         {
             // Pass the same manager instance to Form5
-            Form5 form5 = new Form5(_loggedInManager);
+            Form5 form5 = new Form5(loggedInUser);
             form5.Show();
             this.Hide();
         }

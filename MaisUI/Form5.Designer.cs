@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
             this.UserName = new System.Windows.Forms.Label();
             this.Email = new System.Windows.Forms.Label();
@@ -80,10 +80,10 @@
             // 
             this.chart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(192)))), ((int)(((byte)(83)))));
             this.chart1.BorderlineColor = System.Drawing.Color.Transparent;
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
             this.chart1.Location = new System.Drawing.Point(303, 169);
-            this.chart1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chart1.Margin = new System.Windows.Forms.Padding(2);
             this.chart1.Name = "chart1";
             this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
@@ -91,9 +91,9 @@
             this.chart1.Size = new System.Drawing.Size(365, 275);
             this.chart1.TabIndex = 7;
             this.chart1.Text = "chart1";
-            title2.Name = "Title1";
-            title2.Text = "Monthly Sales";
-            this.chart1.Titles.Add(title2);
+            title1.Name = "Title1";
+            title1.Text = "Monthly Sales";
+            this.chart1.Titles.Add(title1);
             // 
             // label3
             // 
@@ -202,6 +202,7 @@
             this.Ordersbtn.Size = new System.Drawing.Size(153, 45);
             this.Ordersbtn.TabIndex = 1;
             this.Ordersbtn.UseVisualStyleBackColor = false;
+            this.Ordersbtn.Click += new System.EventHandler(this.Ordersbtn_Click);
             // 
             // DashBoardbtn
             // 
